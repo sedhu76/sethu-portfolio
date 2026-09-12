@@ -73,7 +73,7 @@ export default function Navbar({ activeSection }) {
             className="group flex items-center gap-2.5 sm:gap-3 cursor-pointer select-none"
           >
             <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#111111] text-white flex items-center justify-center font-bold text-base sm:text-lg tracking-tight group-hover:scale-105 transition-transform duration-200 shadow-sm">
-              C
+              S
             </div>
             <div className="flex flex-col">
               <span className="font-extrabold tracking-tight text-lg sm:text-xl text-[#111111] group-hover:text-blue-700 transition-colors leading-tight">
@@ -151,7 +151,7 @@ export default function Navbar({ activeSection }) {
           <div className="flex items-center justify-between pb-5 border-b border-black/8 mb-6">
             <div className="flex items-center gap-2.5">
               <div className="w-9 h-9 rounded-xl bg-[#111111] text-white flex items-center justify-center font-bold text-sm">
-                C
+                S
               </div>
               <div className="flex flex-col">
                 <span className="font-extrabold text-base text-[#111111] leading-tight">{personalInfo.brandName}</span>

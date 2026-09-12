@@ -15,7 +15,7 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-[#111111] text-white flex items-center justify-center font-bold text-sm shrink-0">
-              C
+              S
             </div>
             <span className="font-extrabold text-lg text-[#111111] tracking-tight">
               {personalInfo.brandName}

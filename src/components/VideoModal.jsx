@@ -1,11 +1,16 @@
-import React, { useEffect, useRef } from 'react';
-import { X, Film, Sparkles, CheckCircle2 } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { X, Film, Loader2, AlertCircle, RotateCcw } from 'lucide-react';
 
 export default function VideoModal({ isOpen, project, onClose }) {
   const videoRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     if (!isOpen) return;
+
+    setIsLoading(true);
+    setHasError(false);
 
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
@@ -14,10 +19,11 @@ export default function VideoModal({ isOpen, project, onClose }) {
     window.addEventListener('keydown', handleKeyDown);
     document.body.style.overflow = 'hidden';
 
-    // Auto-play when opened
+    // Explicitly load and attempt play
     if (videoRef.current) {
+      videoRef.current.load();
       videoRef.current.play().catch(() => {
-        // Autoplay policy fallback
+        // Autoplay policy fallback (user can click play via native controls)
       });
     }
 
@@ -28,9 +34,18 @@ export default function VideoModal({ isOpen, project, onClose }) {
         videoRef.current.pause();
       }
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, project, onClose]);
 
   if (!isOpen || !project) return null;
+
+  const handleRetry = () => {
+    setHasError(false);
+    setIsLoading(true);
+    if (videoRef.current) {
+      videoRef.current.load();
+      videoRef.current.play().catch(() => {});
+    }
+  };
 
   return (
     <div
@@ -68,14 +83,45 @@ export default function VideoModal({ isOpen, project, onClose }) {
 
         {/* Video Player Box */}
         <div className="relative bg-black aspect-video flex items-center justify-center overflow-hidden">
-          <video
-            ref={videoRef}
-            src={project.videoSrc}
-            controls
-            autoPlay
-            playsInline
-            className="w-full h-full object-contain"
-          />
+          {isLoading && !hasError && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 z-10 bg-black/60 pointer-events-none">
+              <Loader2 className="w-8 h-8 text-indigo-400 animate-spin" />
+              <span className="text-xs text-neutral-400 font-mono-tag">Buffering video...</span>
+            </div>
+          )}
+
+          {hasError ? (
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center z-10 bg-neutral-950">
+              <AlertCircle className="w-10 h-10 text-red-400" />
+              <p className="text-sm font-semibold text-neutral-200">Unable to load video stream</p>
+              <p className="text-xs text-neutral-500 max-w-sm">
+                Please check your internet connection or try refreshing the player.
+              </p>
+              <button
+                onClick={handleRetry}
+                className="mt-2 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-colors cursor-pointer"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>Try Again</span>
+              </button>
+            </div>
+          ) : (
+            <video
+              ref={videoRef}
+              src={project.videoSrc}
+              controls
+              autoPlay
+              playsInline
+              onWaiting={() => setIsLoading(true)}
+              onCanPlay={() => setIsLoading(false)}
+              onPlaying={() => setIsLoading(false)}
+              onError={() => {
+                setIsLoading(false);
+                setHasError(true);
+              }}
+              className="w-full h-full object-contain"
+            />
+          )}
         </div>
 
         {/* Video Footer Metadata */}
@@ -85,7 +131,7 @@ export default function VideoModal({ isOpen, project, onClose }) {
           </p>
 
           <span className="shrink-0 text-[10px] sm:text-[11px] font-mono-tag text-neutral-400 bg-white/5 px-2.5 py-1 rounded-lg border border-white/10">
-            Native HTML5 Player &bull; No Redirects
+            Native HTML5 Player &bull; 1080p HD
           </span>
         </div>
       </div>

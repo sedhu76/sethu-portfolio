@@ -1,6 +1,6 @@
 export const personalInfo = {
   name: "SETHU KUMARAN D",
-  brandName: "CABII",
+  brandName: "Sethu",
   role: "Creative Designer & Multimedia Artist",
   tagline: "Turning Ideas Into Visual Experiences.",
   subtext: "Creative and motivated Multimedia & Animation artist specializing in graphic design, motion graphics, video editing, and 3D modeling environments.",
@@ -140,7 +140,7 @@ export const videoProjects = [
     category: "Video Editing & Transitions",
     duration: "Showcase Reel",
     tool: "Adobe Premiere Pro",
-    videoSrc: "/motion Graphics-1.mp4",
+    videoSrc: "/motion Graphics-1.mp4?v=3",
     description: "Comprehensive video editing showcase produced with Adobe Premiere Pro. Focuses on rhythmic audio syncing, clean cinematic transitions, narrative pacing, and seamless visual flow."
   }
 ];
@@ -154,7 +154,7 @@ export const motionProjects = [
     category: "Motion Design & Kinetic Flow",
     duration: "Showcase 01",
     tool: "Adobe After Effects",
-    videoSrc: "/motion Graphics-1.mp4",
+    videoSrc: "/motion Graphics-1.mp4?v=3",
     description: "Creative kinetic animation and typographic motion reel produced in Adobe After Effects. Demonstrates keyframe animation curves, rhythm-matched flow, and brand motion."
   },
   {
@@ -163,9 +163,9 @@ export const motionProjects = [
     title: "Motion Graphics Showcase 02",
     subtitle: "Visual Effects & Kinetic Animation",
     category: "Motion Design & VFX",
-    duration: "Showcase 02 (Updated)",
+    duration: "Showcase 02",
     tool: "Adobe After Effects",
-    videoSrc: "/motion Graphics-2.mp4?v=2",
+    videoSrc: "/motion Graphics-2.mp4?v=3",
     featured: true,
     description: "Newly updated flagship motion graphics showcase in Adobe After Effects. Highlights advanced keyframing, particle visual effects, dynamic sequence timing, and cinematic motion styling."
   }

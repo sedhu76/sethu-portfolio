@@ -427,7 +427,7 @@ export default function Hero() {
                 <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
               </div>
               <span className="text-[9px] font-mono-tag uppercase tracking-[0.25em] rotate-90 my-3 font-semibold text-neutral-500">
-                CABII &bull; STUDIO
+                SETHU &bull; STUDIO
               </span>
               <div className="w-px h-14 2xl:h-16 bg-neutral-300" />
             </div>
